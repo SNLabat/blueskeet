@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "Bluesky",
-    "slug": "bluesky",
+    "slug": "blueskeet",
     "scheme": "bluesky",
-    "owner": "blueskysocial",
+    "owner": "snlabat",
     "version": "1.28.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,9 +17,6 @@
       "buildNumber": "3",
       "supportsTablet": false,
       "bundleIdentifier": "xyz.blueskyweb.app",
-      "config": {
-        "usesNonExemptEncryption": false
-      },
       "infoPlist": {
         "UIBackgroundModes": [
           "fetch",
@@ -33,7 +30,10 @@
         "NSPhotoLibraryAddUsageDescription": "Used to save images to your library.",
         "NSPhotoLibraryUsageDescription": "Used for profile pictures, posts, and other kinds of content"
       },
-      "associatedDomains": ["applinks:bsky.app", "applinks:staging.bsky.app"]
+      "associatedDomains": [
+        "applinks:bsky.app",
+        "applinks:staging.bsky.app"
+      ]
     },
     "androidStatusBar": {
       "barStyle": "dark-content",
@@ -45,7 +45,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "xyz.blueskyweb.app",
+      "package": "dev.blueskeet.app",
       "intentFilters": [
         {
           "action": "VIEW",
@@ -56,7 +56,10 @@
               "host": "bsky.app"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -77,14 +80,14 @@
       [
         "expo-updates",
         {
-          "username": "blueskysocial"
+          "username": "snlabat"
         }
       ],
       "sentry-expo"
     ],
     "extra": {
       "eas": {
-        "projectId": "55bd077a-d905-4184-9c7f-94789ba0f302"
+        "projectId": "2b803f3b-59e8-4c91-8a37-2ca3c2696416"
       }
     },
     "hooks": {
@@ -92,11 +95,17 @@
         {
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
-            "organization": "blueskyweb",
+            "organization": "blueskeet",
             "project": "react-native"
           }
         }
       ]
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2b803f3b-59e8-4c91-8a37-2ca3c2696416"
     }
   }
 }

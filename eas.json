@@ -13,7 +13,7 @@
       },
       "channel": "development",
       "env": {
-        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+        "SENTRY_AUTH_TOKEN": "43b0a23d7e3e4d82a32272048853ba558855806643e2412fb9d22ef0602eb03b"
       }
     },
     "preview": {
@@ -23,7 +23,7 @@
       },
       "channel": "preview",
       "env": {
-        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+        "SENTRY_AUTH_TOKEN": "43b0a23d7e3e4d82a32272048853ba558855806643e2412fb9d22ef0602eb03b"
       }
     },
     "production": {
@@ -32,7 +32,7 @@
       },
       "channel": "production",
       "env": {
-        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+        "SENTRY_AUTH_TOKEN": "43b0a23d7e3e4d82a32272048853ba558855806643e2412fb9d22ef0602eb03b"
       }
     }
   },
