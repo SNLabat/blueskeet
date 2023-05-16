@@ -1,0 +1,42 @@
+{
+  "cli": {
+    "version": ">= 3.8.1",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "resourceClass": "medium"
+      },
+      "channel": "development",
+      "env": {
+        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "medium"
+      },
+      "channel": "preview",
+      "env": {
+        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+      }
+    },
+    "production": {
+      "ios": {
+        "resourceClass": "medium"
+      },
+      "channel": "production",
+      "env": {
+        "SENTRY_AUTH_TOKEN": "89c975413cd543fbb683b11bec984fc2163d9a77312c41c0b4480a570f3daa65"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

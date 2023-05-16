@@ -1,0 +1,132 @@
+<!DOCTYPE html>                                                                                          
+<html lang="en">
+<head>   
+  <meta charset="UTF-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="origin-when-cross-origin">
+  <title>{%- block head_title -%}Bluesky{%- endblock -%}</title>
+
+  <!-- Hello Humans! API docs at https://atproto.com -->
+  
+  <style>
+    /**
+     * Extend the react-native-web reset:
+     * https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/StyleSheet/initialRules.js
+     */
+    html,
+    body,
+    #root {
+      width: 100%;
+      /* To smooth any scrolling behavior */
+      -webkit-overflow-scrolling: touch;
+      margin: 0px;
+      padding: 0px;
+      /* Allows content to fill the viewport and go beyond the bottom */
+      min-height: 100%;
+    }
+    #root {
+      flex-shrink: 0;
+      flex-basis: auto;
+      flex-grow: 1;
+      display: flex;
+      flex: 1;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      /* Prevent text size change on orientation change https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
+      -webkit-text-size-adjust: 100%;
+      height: calc(100% + env(safe-area-inset-top));
+    }
+
+    body {
+      display: flex;
+      /* Allows you to scroll below the viewport; default value is visible */
+      overflow-y: auto;
+      overscroll-behavior-y: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -ms-overflow-style: scrollbar;
+    }
+    /* Enable for apps that support dark-theme */
+    /*@media (prefers-color-scheme: dark) {
+      body {
+        background-color: black;
+      }
+    }*/
+
+    /* Remove default link styling */
+    a {
+      color: inherit;
+    }
+    a[role="link"]:hover {
+      text-decoration: underline;
+    }
+    a[role="link"][data-no-underline="1"]:hover {
+      text-decoration: none;
+    }
+
+    /* Styling hacks */
+    *[data-word-wrap] {
+      word-break: break-word;
+    }
+
+    /* ProseMirror */
+    .ProseMirror {
+      font: 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 140px;
+    }
+    .ProseMirror-dark {
+      color: white;
+    }
+    .ProseMirror p {
+      margin: 0;
+    }
+    .ProseMirror p.is-editor-empty:first-child::before {
+      color: #8d8e96;
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
+    .ProseMirror .mention {
+      color: #0085ff;
+    }
+    .ProseMirror a {
+      color: #0085ff;
+      cursor: pointer;
+    }
+    /* OLLIE: TODO -- this is not accessible */
+    /* Remove focus state on inputs */
+    .ProseMirror-focused {
+      outline: 0;
+    }
+    input:focus {
+      outline: 0;
+    }
+    .tippy-content .items {
+      width: fit-content;
+    }
+  </style>
+  {% include "scripts.html" %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
+  {% block html_head_extra -%}{%- endblock %}
+  <meta name="application-name" name="Bluesky">
+  <meta name="generator" name="bskyweb">
+</head>
+<body>
+{%- block body_all %}
+	<div id="root"></div>
+    <noscript>
+      <h1>Javascript Required</h1>
+      <p>This is a heavily interactive web application, and Javascript is required. Simple HTML interfaces are possible, but that is not what this is.
+      <p>Learn more about Bluesky at <a href="https://blueskyweb.xyz">blueskyweb.xyz</a> and <a href="https://atproto.com">atproto.com</a>.
+			{% block noscript_extra %}{% endblock %}
+    </noscript>
+{% endblock -%}
+</body>
+</html>

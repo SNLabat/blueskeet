@@ -1,0 +1,102 @@
+{
+  "expo": {
+    "name": "Bluesky",
+    "slug": "bluesky",
+    "scheme": "bluesky",
+    "owner": "blueskysocial",
+    "version": "1.28.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/cloud-splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "buildNumber": "3",
+      "supportsTablet": false,
+      "bundleIdentifier": "xyz.blueskyweb.app",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "fetch",
+          "processing"
+        ],
+        "BGTaskSchedulerPermittedIdentifiers": [
+          "com.transistorsoft.fetch"
+        ],
+        "NSCameraUsageDescription": "Used for profile pictures, posts, and other kinds of content.",
+        "NSMicrophoneUsageDescription": "Used for posts and other kinds of content.",
+        "NSPhotoLibraryAddUsageDescription": "Used to save images to your library.",
+        "NSPhotoLibraryUsageDescription": "Used for profile pictures, posts, and other kinds of content"
+      },
+      "associatedDomains": ["applinks:bsky.app", "applinks:staging.bsky.app"]
+    },
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "versionCode": 14,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "xyz.blueskyweb.app",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "bsky.app"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-localization",
+      "react-native-background-fetch",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "1.8.0"
+          }
+        }
+      ],
+      [
+        "expo-updates",
+        {
+          "username": "blueskysocial"
+        }
+      ],
+      "sentry-expo"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "55bd077a-d905-4184-9c7f-94789ba0f302"
+      }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "blueskyweb",
+            "project": "react-native"
+          }
+        }
+      ]
+    }
+  }
+}
