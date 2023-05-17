@@ -16,7 +16,7 @@
     "ios": {
       "buildNumber": "3",
       "supportsTablet": false,
-      "bundleIdentifier": "xyz.blueskyweb.app",
+      "bundleIdentifier": "dev.blueskeet.app",
       "infoPlist": {
         "UIBackgroundModes": [
           "fetch",
