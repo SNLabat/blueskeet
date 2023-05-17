@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Bluesky",
+    "name": "blueskeet",
     "slug": "blueskeet",
-    "scheme": "bluesky",
+    "scheme": "blueskeet",
     "owner": "snlabat",
     "version": "1.28.0",
     "orientation": "portrait",
@@ -96,7 +96,8 @@
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
             "organization": "blueskeet",
-            "project": "react-native"
+            "project": "blueskeet",
+            "authToken": "43b0a23d7e3e4d82a32272048853ba558855806643e2412fb9d22ef0602eb03b"
           }
         }
       ]
@@ -109,3 +110,5 @@
     }
   }
 }
+
+

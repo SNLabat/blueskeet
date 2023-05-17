@@ -34,10 +34,10 @@ export const SplashScreen = ({
         ]}>
         <ErrorBoundary>
           <Text style={isMobileWeb ? styles.titleMobile : styles.title}>
-            Bluesky
+            blueskeet
           </Text>
           <Text style={isMobileWeb ? styles.subtitleMobile : styles.subtitle}>
-            See what's next
+            Skeet what's next
           </Text>
           <View testID="signinOrCreateAccount" style={styles.btns}>
             <TouchableOpacity
