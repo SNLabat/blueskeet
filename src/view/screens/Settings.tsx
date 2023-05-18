@@ -287,21 +287,20 @@ export const SettingsScreen = withAuthRequired(
           <Text type="xl-bold" style={[pal.text, styles.heading]}>
             Themes
           </Text>
-          <Link
-          testID="themeBtn"
-          style={[styles.linkCard, pal.view, isSwitching && styles.dimmed]}
-          href="/settings/themes">
-          <View style={[styles.iconContainer, pal.btn]}>
-            <FontAwesomeIcon
-              icon="brush"
-              style={pal.text as FontAwesomeIconStyle}
-            />
-          </View>
-          <Text type="lg" style={pal.text}>
-            Customize your theme
-          </Text>
-        </Link>
-
+          <TouchableOpacity
+            testID="customizeThemeBtn"
+            style={[styles.linkCard, pal.view]}
+            onPress={() => navigation.navigate('CustomizeTheme')}>
+            <View style={[styles.iconContainer, pal.btn]}>
+              <FontAwesomeIcon
+                icon="palette"
+                style={pal.text as FontAwesomeIconStyle}
+              />
+            </View>
+            <Text type="lg" style={pal.link}>
+              Customize your theme
+            </Text>
+          </TouchableOpacity>
           <View style={styles.spacer20} />
 
           <Text type="xl-bold" style={[pal.text, styles.heading]}>

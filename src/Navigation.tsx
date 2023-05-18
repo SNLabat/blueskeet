@@ -55,6 +55,7 @@ import {AppPasswords} from 'view/screens/AppPasswords'
 import {ModerationMutedAccounts} from 'view/screens/ModerationMutedAccounts'
 import {ModerationBlockedAccounts} from 'view/screens/ModerationBlockedAccounts'
 import {getRoutingInstrumentation} from 'lib/sentry'
+import CustomizeThemeScreen from './view/screens/CustomizeTheme'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
 
@@ -102,6 +103,11 @@ function commonScreens(Stack: typeof HomeTab) {
       <Stack.Screen name="Support" component={SupportScreen} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
       <Stack.Screen name="TermsOfService" component={TermsOfServiceScreen} />
+      <Stack.Screen
+        name="CustomizeTheme"
+        component={CustomizeThemeScreen as any}
+        options={{title: 'Customize Theme'}}
+      />
       <Stack.Screen
         name="CommunityGuidelines"
         component={CommunityGuidelinesScreen}
