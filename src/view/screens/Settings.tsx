@@ -289,7 +289,7 @@ export const SettingsScreen = withAuthRequired(
           </Text>
           <TouchableOpacity
             testID="customizeThemeBtn"
-            style={[styles.linkCard, pal.view]}
+            style={[styles.linkCard, pal.view, isSwitching && styles.dimmed]}
             onPress={() => navigation.navigate('CustomizeTheme')}>
             <View style={[styles.iconContainer, pal.btn]}>
               <FontAwesomeIcon
@@ -297,8 +297,8 @@ export const SettingsScreen = withAuthRequired(
                 style={pal.text as FontAwesomeIconStyle}
               />
             </View>
-            <Text type="lg" style={pal.link}>
-              Customize your theme
+            <Text type="lg" style={pal.text}>
+              Customize theme
             </Text>
           </TouchableOpacity>
           
