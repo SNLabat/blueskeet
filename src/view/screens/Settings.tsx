@@ -301,6 +301,7 @@ export const SettingsScreen = withAuthRequired(
               Customize your theme
             </Text>
           </TouchableOpacity>
+          
           <View style={styles.spacer20} />
 
           <Text type="xl-bold" style={[pal.text, styles.heading]}>
