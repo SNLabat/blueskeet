@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Modal } from 'react-native';
+import { usePalette } from 'lib/hooks/usePalette';
 
 const CustomizeThemeModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const pal = usePalette('default')
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={toggleModal}>
-        <Text style={styles.button}>Customize Theme</Text>
-      </TouchableOpacity>
-      <Modal visible={isModalVisible} onRequestClose={toggleModal} transparent={true} animationType="slide">
+    <View testID="contentLanguagesModal" style={[pal.view, styles.container]}>
+    <Text style={[pal.text, styles.title]}>Select a Theme</Text>
+    <Text style={[pal.text, styles.description]}>
+      Customize blueskeet to your liking.
+    </Text>
+      {isModalVisible && (
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>Customize Theme</Text>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Option 1 selected')}>
@@ -48,7 +51,7 @@ const CustomizeThemeModal = () => {
           </TouchableOpacity>
           <Button title="Close" onPress={toggleModal} />
         </View>
-      </Modal>
+      )}
     </View>
   );
 };
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+  header: {
     fontSize: 20,
     color: 'blue',
   },
