@@ -285,26 +285,6 @@ export const SettingsScreen = withAuthRequired(
           <View style={styles.spacer20} />
 
           <Text type="xl-bold" style={[pal.text, styles.heading]}>
-            Themes
-          </Text>
-          <TouchableOpacity
-            testID="customizeThemeBtn"
-            style={[styles.linkCard, pal.view, isSwitching && styles.dimmed]}
-            onPress={() => navigation.navigate('CustomizeTheme')}>
-            <View style={[styles.iconContainer, pal.btn]}>
-              <FontAwesomeIcon
-                icon="palette"
-                style={pal.text as FontAwesomeIconStyle}
-              />
-            </View>
-            <Text type="lg" style={pal.text}>
-              Customize theme
-            </Text>
-          </TouchableOpacity>
-          
-          <View style={styles.spacer20} />
-
-          <Text type="xl-bold" style={[pal.text, styles.heading]}>
             Advanced
           </Text>
           <Link
