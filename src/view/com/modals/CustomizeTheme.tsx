@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { StyleSheet, Pressable, View, ScrollView } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { observer } from 'mobx-react-lite'
-import { usePalette } from 'lib/hooks/usePalette';
 import { useStores } from 'state/index'
-import { ScrollView } from './util'
+import { ToggleButton } from '../util/forms/ToggleButton'
+import { s, colors, gradients } from 'lib/styles'
+import { Text } from '../util/text/Text'
+import { usePalette } from 'lib/hooks/usePalette'
+import { isDesktopWeb } from 'platform/detection'
+
+export const snapPoints = ['100%']
 
 export function CustomizeThemeModal() {
   const store = useStores()
   const pal = usePalette('default')
   const onPressDone = React.useCallback(() => {
-    // replace shell.closeModal() with your own modal closing function
     store.shell.closeModal() 
   }, [store])
 
   const themes = React.useMemo(() => {
-    // replace this list with your actual themes data
     const themeList = ['Theme 1', 'Theme 2', 'Theme 3', 'Theme 4', 'Theme 5', 'Theme 6', 'Theme 7', 'Theme 8', 'Theme 9', 'Theme 10']
     return themeList
   }, [store])
@@ -22,7 +26,9 @@ export function CustomizeThemeModal() {
   return (
     <View testID="customizeThemeModal" style={[pal.view, styles.container]}>
       <Text style={[pal.text, styles.title]}>Select a Theme</Text>
-      <Text style={[pal.text, styles.description]}>Customize blueskeet to your liking.</Text>
+      <Text style={[pal.text, styles.description]}>
+        Customize blueskeet to your liking.
+      </Text>
       <ScrollView style={styles.scrollContainer}>
         {themes.map((theme, index) => (
           <ThemeToggle
@@ -30,10 +36,24 @@ export function CustomizeThemeModal() {
             name={theme}
           />
         ))}
+        <View style={styles.bottomSpacer} />
       </ScrollView>
-      <TouchableOpacity style={styles.btn} onPress={onPressDone}>
-        <Text style={styles.btnText}>Done</Text>
-      </TouchableOpacity>
+      <View style={[styles.btnContainer, pal.borderDark]}>
+        <Pressable
+          testID="confirmThemeBtn"
+          onPress={onPressDone}
+          accessibilityRole="button"
+          accessibilityLabel="Confirm theme settings"
+          accessibilityHint="">
+          <LinearGradient
+            colors={[gradients.blueLight.start, gradients.blueLight.end]}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 1}}
+            style={[styles.btn]}>
+            <Text style={[s.white, s.bold, s.f18]}>Done</Text>
+          </LinearGradient>
+        </Pressable>
+      </View>
     </View>
   )
 }
@@ -44,16 +64,16 @@ const ThemeToggle = observer(
     const pal = usePalette('default')
 
     const onPress = React.useCallback(() => {
-      // replace toggleTheme with your function to change the theme
       store.preferences.toggleTheme(name) 
     }, [store, name])
 
     return (
-      <TouchableOpacity
-        style={styles.option}
-        onPress={onPress}>
-        <Text style={styles.optionText}>{name}</Text>
-      </TouchableOpacity>
+      <ToggleButton
+        label={name}
+        isSelected={store.preferences.currentTheme === name}
+        onPress={onPress}
+        style={[pal.border, styles.themeToggle]}
+      />
     )
   },
 )
@@ -61,37 +81,48 @@ const ThemeToggle = observer(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 20,
   },
   title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 24,
     marginBottom: 12,
   },
   description: {
+    textAlign: 'center',
+    paddingHorizontal: 16,
     marginBottom: 10,
   },
   scrollContainer: {
     flex: 1,
     paddingHorizontal: 10,
   },
-  option: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  bottomSpacer: {
+    height: isDesktopWeb ? 0 : 60,
   },
-  optionText: {
-    fontSize: 18,
+  btnContainer: {
+    paddingTop: 10,
+    paddingHorizontal: 10,
+    paddingBottom: isDesktopWeb ? 0 : 40,
+    borderTopWidth: isDesktopWeb ? 0 : 1,
+  },
+  themeToggle: {
+    borderTopWidth: 1,
+    borderRadius: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 12,
   },
   btn: {
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-    backgroundColor: 'blue', // replace with your actual button color
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderRadius: 32,
+    padding: 14,
+    backgroundColor: colors.gray1,
   },
-  btnText: {
-    color: 'white', // replace with your actual button text color
-    fontSize: 18,
-    textAlign: 'center',
-  },
-});
+})
+
 
 export default CustomizeThemeModal;
