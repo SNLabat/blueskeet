@@ -24,6 +24,7 @@ import * as InviteCodesModal from './InviteCodes'
 import * as AddAppPassword from './AddAppPasswords'
 import * as ContentFilteringSettingsModal from './ContentFilteringSettings'
 import * as ContentLanguagesSettingsModal from './ContentLanguagesSettings'
+import * as CustomizeThemeModal from './CustomizeTheme'
 
 export const ModalsContainer = observer(function ModalsContainer() {
   const store = useStores()
@@ -97,6 +98,8 @@ function Modal({modal}: {modal: ModalIface}) {
     element = <AltTextImageModal.Component {...modal} />
   } else if (modal.name === 'edit-image') {
     element = <EditImageModal.Component {...modal} />
+  } else if (modal.name === 'customize-theme') {
+    element = <CustomizeThemeModal.Component {...modal} />
   } else {
     return null
   }
