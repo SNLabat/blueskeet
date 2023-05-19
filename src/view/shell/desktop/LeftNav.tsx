@@ -245,12 +245,12 @@ export const DesktopLeftNav = observer(function DesktopLeftNav() {
         href="/themes"
         icon={
           <View style={pal.text}>
-            <PaintBrushIcon strokeWidth={1.5} size={28} />
+            <PaintBrushIcon strokeWidth={1.5} size={28} style={pal.text} />
           </View>
         }
         iconFilled={
           <View style={pal.text}>
-            <PaintBrushIcon strokeWidth={1.5} size={28} />
+            <PaintBrushIcon strokeWidth={1.5} size={28} style={pal.text} />
           </View>
         }
         label="Themes"
