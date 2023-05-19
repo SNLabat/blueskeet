@@ -2,6 +2,7 @@ import {TextStyle, ViewStyle} from 'react-native'
 import {useTheme, PaletteColorName, PaletteColor} from '../ThemeContext'
 
 export interface UsePaletteValue {
+  bg: ViewStyle | Falsy | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | readonly (ViewStyle | Falsy | RegisteredStyle<ViewStyle>)[]
   colors: PaletteColor
   view: ViewStyle
   viewLight: ViewStyle

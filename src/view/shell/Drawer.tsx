@@ -107,6 +107,12 @@ export const DrawerContent = observer(() => {
     store.shell.closeDrawer()
   }, [navigation, track, store.shell])
 
+  const onPressThemes = React.useCallback(() => {
+    track('Menu:ItemClicked', {url: 'Themes'})
+    navigation.navigate('Themes')
+    store.shell.closeDrawer()
+  }, [navigation, track, store.shell])
+
   const onPressFeedback = React.useCallback(() => {
     track('Menu:FeedbackClicked')
     Linking.openURL(FEEDBACK_FORM_URL)

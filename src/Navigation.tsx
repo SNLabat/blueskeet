@@ -55,7 +55,7 @@ import {AppPasswords} from 'view/screens/AppPasswords'
 import {ModerationMutedAccounts} from 'view/screens/ModerationMutedAccounts'
 import {ModerationBlockedAccounts} from 'view/screens/ModerationBlockedAccounts'
 import {getRoutingInstrumentation} from 'lib/sentry'
-import CustomizeThemeScreen from './view/com/modals/CustomizeTheme'
+import CustomizeThemeScreen from '../src/view/screens/CustomizeTheme'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
 

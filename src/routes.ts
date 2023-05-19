@@ -5,6 +5,7 @@ export const router = new Router({
   Search: '/search',
   Notifications: '/notifications',
   Settings: '/settings',
+  CustomizeTheme: '/themes',
   Moderation: '/moderation',
   ModerationMuteLists: '/moderation/mute-lists',
   ModerationMutedAccounts: '/moderation/muted-accounts',

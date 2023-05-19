@@ -41,6 +41,13 @@ export class LabelPreferencesModel {
 }
 
 export class PreferencesModel {
+  currentTheme: string
+  save() {
+      throw new Error('Method not implemented.')
+  }
+  toggleTheme(name: string) {
+      throw new Error('Method not implemented.')
+  }
   adultContentEnabled = !isIOS
   contentLanguages: string[] =
     deviceLocales?.map?.(locale => locale.languageCode) || []
