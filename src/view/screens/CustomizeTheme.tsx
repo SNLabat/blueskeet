@@ -3,8 +3,19 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 type ColorOption = [string, string];
 
+const colorOptions: ColorOption[] = [
+  ['#FFFFFF', '#000000'], // white background, black text
+  ['#000000', '#FFFFFF'], // black background, white text
+  ['#FF0000', '#FFFFFF'], // red background, white text
+  ['#00FF00', '#000000'], // green background, black text
+];
+
 const CustomizeTheme: React.FC = () => {
-  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
+
+  const [selectedColor, setSelectedColor] = useState<string>(
+    colorOptions[selectedColorIndex][0]
+  );
 
   const styles = StyleSheet.create({
     container: {
@@ -12,46 +23,39 @@ const CustomizeTheme: React.FC = () => {
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 20,
+      backgroundColor: selectedColor,
     },
     text: {
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 20,
+      color: colorOptions[selectedColorIndex][1],
     },
   });
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      setSelectedColor('');
+      setSelectedColorIndex(0);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-    const storedColor = localStorage.getItem('selectedColor');
-    if (storedColor) {
-      setSelectedColor(storedColor);
-    }
-  }, []);
-
-  const themeStyle = {
-    text: {
-      color: selectedColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
-    },
-  };
+    localStorage.setItem('selectedColorIndex', selectedColorIndex.toString());
+    setSelectedColor(colorOptions[selectedColorIndex][0]);
+  }, [selectedColorIndex]);
 
   const handlePress = () => {
-    console.log('Hello!');
+    setSelectedColorIndex((selectedColorIndex + 1) % colorOptions.length);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, themeStyle.text]}>Select a theme:</Text>
-      <Button title="Hello" onPress={handlePress} />
-};
+      <Text style={[styles.text]}>Select a theme:</Text>
+      <Button title="Next Theme" onPress={handlePress} />
     </View>
   );
-};
+}
 
 export default CustomizeTheme;
