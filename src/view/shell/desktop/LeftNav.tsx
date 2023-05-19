@@ -30,6 +30,7 @@ import {
   CogIconSolid,
   ComposeIcon2,
   HandIcon,
+  PaintBrushIcon,
 } from 'lib/icons'
 import {getCurrentRoute, isTab, isStateAtTabRoot} from 'lib/routes/helpers'
 import {NavigationProp} from 'lib/routes/types'
@@ -240,12 +241,51 @@ export const DesktopLeftNav = observer(function DesktopLeftNav() {
         }
         label="Settings"
       />
+      <NavItem
+        href="/themes"
+        icon={
+          <View style={pal.text}>
+            <PaintBrushIcon strokeWidth={1.5} size={28} />
+          </View>
+        }
+        iconFilled={
+          <View style={pal.text}>
+            <PaintBrushIcon strokeWidth={1.5} size={28} />
+          </View>
+        }
+        label="Themes"
+      />
       {store.session.hasSession && <ComposeBtn />}
-    </View>
+      </View>
   )
-})
-
+      })
 const styles = StyleSheet.create({
+  leftNav: {
+    position: 'absolute',
+    top: 10,
+    right: 'calc(50vw + 312px)',
+    width: 220,
+  },
+
+  profileCard: {
+    marginVertical: 10,
+    width: 90,
+    paddingLeft: 12,
+  },
+
+  backBtn: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 30,
+    height: 30,
+  },
+
+  navItemWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
   leftNav: {
     position: 'absolute',
     top: 10,
