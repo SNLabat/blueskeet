@@ -1,37 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { slateTheme, grayTheme, zincTheme, neutralTheme, stoneTheme, redTheme, orangeTheme, amberTheme, yellowTheme, limeTheme, greenTheme, emeraldTheme, tealTheme, cyanTheme, skyTheme, blueTheme, indigoTheme, violetTheme, purpleTheme, fuchsiaTheme, pinkTheme, roseTheme } from './src/lib/themes';
 
-const CustomizeTheme = () => {
-  const [selectedColor, setSelectedColor] = useState('');
+type ColorOption = [string, string];
 
-  const pal = {
-    view: {
-      backgroundColor: selectedColor || 'white', // use selectedColor if it exists, otherwise use white
+const CustomizeTheme: React.FC = () => {
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const windowDimensions = useWindowDimensions();
+
+  const styles = StyleSheet.create({
+    container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      paddingHorizontal: 20,
     },
     text: {
       fontSize: 24,
       fontWeight: 'bold',
+      marginBottom: 20,
+    },
+    colorOptionContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: 800,
     },
     colorOption: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      margin: 10,
+      aspectRatio: 1,
+      borderRadius: 10,
+      marginBottom: 20,
     },
-  };
+  });
 
-  const colors = [
-    ['#FF0000', '#FFA500'],
-    ['#FFC0CB', '#FF1493'],
-    ['#FFD700', '#FF8C00'],
-    ['#00FF00', '#32CD32'],
-    ['#0000FF', '#1E90FF'],
-    ['#9400D3', '#8A2BE2'],
+  const colors: ColorOption[] = [
+    ...slateTheme,
+    ...grayTheme,
+    ...zincTheme,
+    ...neutralTheme,
+    ...stoneTheme,
+    ...redTheme,
+    ...orangeTheme,
+    ...amberTheme,
+    ...yellowTheme,
+    ...limeTheme,
+    ...greenTheme,
+    ...emeraldTheme,
+    ...tealTheme,
+    ...cyanTheme,
+    ...skyTheme,
+    ...blueTheme,
+    ...indigoTheme,
+    ...violetTheme,
+    ...purpleTheme,
+    ...fuchsiaTheme,
+    ...pinkTheme,
+    ...roseTheme,
+    ...darkTheme,
+    ...defaultTheme,
   ];
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setSelectedColor('');
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const storedColor = localStorage.getItem('selectedColor');
@@ -45,29 +83,41 @@ const CustomizeTheme = () => {
     localStorage.setItem('selectedColor', color);
   };
 
+  const themeStyle = {
+    container: {
+      backgroundColor: selectedColor,
+    },
+    text: {
+      color: selectedColor === '#FFFFFF' ? '#000000' : '#FFFFFF',
+    },
+  };
+
   return (
-    <View style={pal.view}>
-      <Text style={pal.text}>Select a theme:</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        {colors.map((color) => (
+    <View style={[styles.container, themeStyle.container]}>
+      <View style={styles.colorOptionContainer}>
+        {colors.map(([color, hex]) => (
           <TouchableOpacity
-            key={color[0]}
-            style={pal.colorOption}
-            onPress={() => handleColorSelection(color[0])}
+            key={color}
+            style={[styles.colorOption, { backgroundColor: hex }]}
+            onPress={() => handleColorSelection(hex)}
+            accessibilityRole="button"
+            accessibilityLabel={`Select ${color} as your theme color`}
+            accessibilityHint="Double tap to select"
           >
             <LinearGradient
-              colors={color}
+              colors={[hex, hex]}
               style={{
                 width: '100%',
                 height: '100%',
-                borderRadius: 25,
+                borderRadius: 10,
               }}
             />
           </TouchableOpacity>
         ))}
       </View>
+      <Text style={[styles.text, themeStyle.text]}>Select a theme:</Text>
       {selectedColor !== '' && (
-        <Text style={{ marginTop: 20 }}>
+        <Text style={[{ marginTop: 20 }, themeStyle.text]}>
           You have selected {selectedColor} as your theme color.
         </Text>
       )}
