@@ -10,10 +10,38 @@ import {ToastContainer} from './view/com/util/Toast.web'
 import {ThemeProvider} from 'lib/ThemeContext'
 import {observer} from 'mobx-react-lite'
 
+const THEMES = [
+  'slate',
+  'gray',
+  'zinc',
+  'neutral',
+  'stone',
+  'red',
+  'orange',
+  'amber',
+  'yellow',
+  'lime',
+  'green',
+  'emerald',
+  'teal',
+  'cyan',
+  'sky',
+  'blue',
+  'indigo',
+  'violet',
+  'purple',
+  'fuchsia',
+  'pink',
+  'rose',
+  'dark',
+  'default',
+];
+
 const App = observer(() => {
   const [rootStore, setRootStore] = useState<RootStoreModel | undefined>(
     undefined,
   )
+  const [themeIndex, setThemeIndex] = useState(0);
 
   // init
   useEffect(() => {
@@ -29,8 +57,12 @@ const App = observer(() => {
     return null
   }
 
-  return (
-    <ThemeProvider theme={rootStore.shell.darkMode ? 'dark' : 'light'}>
+  const handleThemeChange = () => {
+    const newThemeIndex = (themeIndex + 1) % THEMES.length;
+    const newTheme = THEMES[newThemeIndex];
+    setThemeIndex(newThemeIndex);
+    // update the theme prop value of the ThemeProvider component
+    return <ThemeProvider theme={newTheme}>
       <RootSiblingParent>
         <analytics.Provider>
           <RootStoreProvider value={rootStore}>
@@ -42,6 +74,24 @@ const App = observer(() => {
         </analytics.Provider>
       </RootSiblingParent>
     </ThemeProvider>
+  }
+
+  return (
+    <>
+      <button onClick={handleThemeChange}>Change Theme</button>
+      <ThemeProvider theme={THEMES[themeIndex]}>
+        <RootSiblingParent>
+          <analytics.Provider>
+            <RootStoreProvider value={rootStore}>
+              <SafeAreaProvider>
+                <Shell />
+              </SafeAreaProvider>
+              <ToastContainer />
+            </RootStoreProvider>
+          </analytics.Provider>
+        </RootSiblingParent>
+      </ThemeProvider>
+    </>
   )
 })
 
