@@ -152,13 +152,12 @@ export const CustomizeThemeScreen = withAuthRequired(
           {store.session.currentSession !== undefined ? (
             <>
               <Text type="xl-bold" style={[pal.text, styles.heading]}>
-                Account
+                Select a Theme
               </Text>
               <View style={[styles.infoLine]}>
                 <Text type="lg-medium" style={pal.text}>
-                  Email:{' '}
+                  Customize blueskeet to make it your own.
                   <Text type="lg" style={pal.text}>
-                    {store.session.currentSession?.email}
                   </Text>
                 </Text>
               </View>
